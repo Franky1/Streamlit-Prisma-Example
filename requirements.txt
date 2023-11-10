@@ -1,2 +1,6 @@
 # add the required pypi packages here that your app actually needs
+numpy
+pandas
 streamlit
+prisma
+faker
