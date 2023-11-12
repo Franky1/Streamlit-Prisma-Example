@@ -1,42 +1,17 @@
-import random
 import time
 
-from faker import Faker
-
-from prisma_client import Prisma
-
-Faker.seed(random.randint(1, 1_000_000))
-fake = Faker(locale="de_DE")
+from utils import database
 
 
-def get_database():
-    db = Prisma()
-    return db
-
-
-def generate_fake_post(db):
-    db.post.create({
-        "title": fake.sentence(nb_words=4).strip("."),
-        "content": fake.paragraph(nb_sentences=5),
-        "author": fake.name()
-    })
-
-
-def get_all_posts(db):
-    posts = db.post.find_many()
-    return posts
-
-
-def clear_table(db):
-    db.post.delete_many()
+def main():
+    db = database.get_database()
+    database.connect(db)
+    database.clear_table(db)
+    for _ in range(10):
+        database.generate_fake_post(db)
+        time.sleep(0.1)
+    database.disconnect(db)
 
 
 if __name__ == "__main__":
-    db = get_database()
-    db.connect()
-    clear_table(db)
-    for _ in range(10):
-        generate_fake_post(db)
-        time.sleep(0.1)
-    print(get_all_posts(db))
-    db.disconnect()
+    main()

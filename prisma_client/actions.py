@@ -174,7 +174,8 @@ class PostActions(Generic[_PrismaModelT]):
         post = Post.prisma().create(
             data={
                 # data to create a Post record
-                'title': 'dhheabfhf',
+                'author': 'dhheabfhf',
+                'title': 'ggciceaie',
             },
         )
         ```
@@ -229,11 +230,13 @@ class PostActions(Generic[_PrismaModelT]):
             data=[
                 {
                     # data to create a Post record
-                    'title': 'ggciceaie',
+                    'author': 'bbehjachib',
+                    'title': 'cadfabfehe',
                 },
                 {
                     # data to create a Post record
-                    'title': 'bbehjachib',
+                    'author': 'dgiiaaijj',
+                    'title': 'bfaiacjjfc',
                 },
             ],
             skip_duplicates=True,
@@ -287,7 +290,7 @@ class PostActions(Generic[_PrismaModelT]):
         ```py
         post = Post.prisma().delete(
             where={
-                'id': 'cadfabfehe',
+                'id': 'eigcfgbif',
             },
         )
         ```
@@ -339,7 +342,7 @@ class PostActions(Generic[_PrismaModelT]):
         ```py
         post = Post.prisma().find_unique(
             where={
-                'id': 'dgiiaaijj',
+                'id': 'bagcfbhiig',
             },
         )
         ```
@@ -390,7 +393,7 @@ class PostActions(Generic[_PrismaModelT]):
         ```py
         post = Post.prisma().find_unique_or_raise(
             where={
-                'id': 'bfaiacjjfc',
+                'id': 'cghideieh',
             },
         )
         ```
@@ -452,11 +455,11 @@ class PostActions(Generic[_PrismaModelT]):
         # find the first 10 Post records
         posts = Post.prisma().find_many(take=10)
 
-        # find the first 5 Post records ordered by the updated_at field
+        # find the first 5 Post records ordered by the author field
         posts = Post.prisma().find_many(
             take=5,
             order={
-                'updated_at': 'desc',
+                'author': 'desc',
             },
         )
         ```
@@ -517,11 +520,11 @@ class PostActions(Generic[_PrismaModelT]):
         Example
         -------
         ```py
-        # find the second Post record ordered by the author field
+        # find the second Post record ordered by the avatar field
         post = Post.prisma().find_first(
             skip=1,
             order={
-                'author': 'desc',
+                'avatar': 'desc',
             },
         )
         ```
@@ -642,7 +645,7 @@ class PostActions(Generic[_PrismaModelT]):
         ```py
         post = Post.prisma().update(
             where={
-                'id': 'eigcfgbif',
+                'id': 'biabhbdai',
             },
             data={
                 # data to update the Post record to
@@ -699,15 +702,17 @@ class PostActions(Generic[_PrismaModelT]):
         ```py
         post = Post.prisma().upsert(
             where={
-                'id': 'bagcfbhiig',
+                'id': 'idghgaicb',
             },
             data={
                 'create': {
-                    'id': 'bagcfbhiig',
-                    'title': 'bbehjachib',
+                    'id': 'idghgaicb',
+                    'author': 'dgiiaaijj',
+                    'title': 'bfaiacjjfc',
                 },
                 'update': {
-                    'title': 'bbehjachib',
+                    'author': 'dgiiaaijj',
+                    'title': 'bfaiacjjfc',
                 },
             },
         )
@@ -755,7 +760,7 @@ class PostActions(Generic[_PrismaModelT]):
         # update all Post records
         total = Post.prisma().update_many(
             data={
-                'content': 'cghideieh'
+                'content': 'fjfddhigg'
             },
             where={}
         )
@@ -1026,10 +1031,10 @@ class PostActions(Generic[_PrismaModelT]):
         Example
         -------
         ```py
-        # group Post records by updated_at values
+        # group Post records by author values
         # and count how many records are in each group
         results = Post.prisma().group_by(
-            ['updated_at'],
+            ['author'],
             count=True,
         )
         ```

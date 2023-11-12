@@ -1153,13 +1153,13 @@ class PostOptionalCreateInput(TypedDict, total=False):
     """Optional arguments to the Post create method"""
     id: _str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
-    author: Optional[_str]
+    avatar: Optional[_str]
     content: Optional[_str]
 
 
 class PostCreateInput(PostOptionalCreateInput):
     """Required arguments to the Post create method"""
+    author: _str
     title: _str
 
 
@@ -1170,13 +1170,13 @@ class PostOptionalCreateWithoutRelationsInput(TypedDict, total=False):
     """Optional arguments to the Post create method, without relations"""
     id: _str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
-    author: Optional[_str]
+    avatar: Optional[_str]
     content: Optional[_str]
 
 
 class PostCreateWithoutRelationsInput(PostOptionalCreateWithoutRelationsInput):
     """Required arguments to the Post create method, without relations"""
+    author: _str
     title: _str
 
 
@@ -1205,8 +1205,8 @@ class PostUpdateInput(TypedDict, total=False):
     """Optional arguments for updating a record"""
     id: _str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
-    author: Optional[_str]
+    author: _str
+    avatar: Optional[_str]
     title: _str
     content: Optional[_str]
 
@@ -1215,8 +1215,8 @@ class PostUpdateManyMutationInput(TypedDict, total=False):
     """Arguments for updating many records"""
     id: _str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
-    author: Optional[_str]
+    author: _str
+    avatar: Optional[_str]
     title: _str
     content: Optional[_str]
 
@@ -1269,18 +1269,18 @@ _Post_created_at_OrderByInput = TypedDict(
     total=True
 )
 
-_Post_updated_at_OrderByInput = TypedDict(
-    '_Post_updated_at_OrderByInput',
-    {
-        'updated_at': 'SortOrder',
-    },
-    total=True
-)
-
 _Post_author_OrderByInput = TypedDict(
     '_Post_author_OrderByInput',
     {
         'author': 'SortOrder',
+    },
+    total=True
+)
+
+_Post_avatar_OrderByInput = TypedDict(
+    '_Post_avatar_OrderByInput',
+    {
+        'avatar': 'SortOrder',
     },
     total=True
 )
@@ -1304,8 +1304,8 @@ _Post_content_OrderByInput = TypedDict(
 PostOrderByInput = Union[
     '_Post_id_OrderByInput',
     '_Post_created_at_OrderByInput',
-    '_Post_updated_at_OrderByInput',
     '_Post_author_OrderByInput',
+    '_Post_avatar_OrderByInput',
     '_Post_title_OrderByInput',
     '_Post_content_OrderByInput',
 ]
@@ -1453,8 +1453,8 @@ class PostWhereInput(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    author: Union[None, _str, 'types.StringFilter']
+    author: Union[_str, 'types.StringFilter']
+    avatar: Union[None, _str, 'types.StringFilter']
     title: Union[_str, 'types.StringFilter']
     content: Union[None, _str, 'types.StringFilter']
 
@@ -1469,8 +1469,8 @@ class PostWhereInputRecursive1(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    author: Union[None, _str, 'types.StringFilter']
+    author: Union[_str, 'types.StringFilter']
+    avatar: Union[None, _str, 'types.StringFilter']
     title: Union[_str, 'types.StringFilter']
     content: Union[None, _str, 'types.StringFilter']
 
@@ -1485,8 +1485,8 @@ class PostWhereInputRecursive2(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    author: Union[None, _str, 'types.StringFilter']
+    author: Union[_str, 'types.StringFilter']
+    avatar: Union[None, _str, 'types.StringFilter']
     title: Union[_str, 'types.StringFilter']
     content: Union[None, _str, 'types.StringFilter']
 
@@ -1501,8 +1501,8 @@ class PostWhereInputRecursive3(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    author: Union[None, _str, 'types.StringFilter']
+    author: Union[_str, 'types.StringFilter']
+    avatar: Union[None, _str, 'types.StringFilter']
     title: Union[_str, 'types.StringFilter']
     content: Union[None, _str, 'types.StringFilter']
 
@@ -1517,8 +1517,8 @@ class PostWhereInputRecursive4(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeFilter']
-    author: Union[None, _str, 'types.StringFilter']
+    author: Union[_str, 'types.StringFilter']
+    avatar: Union[None, _str, 'types.StringFilter']
     title: Union[_str, 'types.StringFilter']
     content: Union[None, _str, 'types.StringFilter']
 
@@ -1533,8 +1533,8 @@ class PostScalarWhereWithAggregatesInput(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringWithAggregatesFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     author: Union[_str, 'types.StringWithAggregatesFilter']
+    avatar: Union[_str, 'types.StringWithAggregatesFilter']
     title: Union[_str, 'types.StringWithAggregatesFilter']
     content: Union[_str, 'types.StringWithAggregatesFilter']
 
@@ -1547,8 +1547,8 @@ class PostScalarWhereWithAggregatesInputRecursive1(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringWithAggregatesFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     author: Union[_str, 'types.StringWithAggregatesFilter']
+    avatar: Union[_str, 'types.StringWithAggregatesFilter']
     title: Union[_str, 'types.StringWithAggregatesFilter']
     content: Union[_str, 'types.StringWithAggregatesFilter']
 
@@ -1561,8 +1561,8 @@ class PostScalarWhereWithAggregatesInputRecursive2(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringWithAggregatesFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     author: Union[_str, 'types.StringWithAggregatesFilter']
+    avatar: Union[_str, 'types.StringWithAggregatesFilter']
     title: Union[_str, 'types.StringWithAggregatesFilter']
     content: Union[_str, 'types.StringWithAggregatesFilter']
 
@@ -1575,8 +1575,8 @@ class PostScalarWhereWithAggregatesInputRecursive3(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringWithAggregatesFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     author: Union[_str, 'types.StringWithAggregatesFilter']
+    avatar: Union[_str, 'types.StringWithAggregatesFilter']
     title: Union[_str, 'types.StringWithAggregatesFilter']
     content: Union[_str, 'types.StringWithAggregatesFilter']
 
@@ -1589,8 +1589,8 @@ class PostScalarWhereWithAggregatesInputRecursive4(TypedDict, total=False):
     """Post arguments for searching"""
     id: Union[_str, 'types.StringWithAggregatesFilter']
     created_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
-    updated_at: Union[datetime.datetime, 'types.DateTimeWithAggregatesFilter']
     author: Union[_str, 'types.StringWithAggregatesFilter']
+    avatar: Union[_str, 'types.StringWithAggregatesFilter']
     title: Union[_str, 'types.StringWithAggregatesFilter']
     content: Union[_str, 'types.StringWithAggregatesFilter']
 
@@ -1599,8 +1599,8 @@ class PostScalarWhereWithAggregatesInputRecursive4(TypedDict, total=False):
 class PostGroupByOutput(TypedDict, total=False):
     id: _str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
     author: _str
+    avatar: _str
     title: _str
     content: _str
     _sum: 'PostSumAggregateOutput'
@@ -1622,8 +1622,8 @@ class PostScalarAggregateOutput(TypedDict, total=False):
     """Post output including scalar fields"""
     id: _str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
     author: _str
+    avatar: _str
     title: _str
     content: _str
 
@@ -1636,8 +1636,8 @@ class PostMaxAggregateInput(TypedDict, total=False):
     """Post input for aggregating by max"""
     id: bool
     created_at: bool
-    updated_at: bool
     author: bool
+    avatar: bool
     title: bool
     content: bool
 
@@ -1646,8 +1646,8 @@ class PostMinAggregateInput(TypedDict, total=False):
     """Post input for aggregating by min"""
     id: bool
     created_at: bool
-    updated_at: bool
     author: bool
+    avatar: bool
     title: bool
     content: bool
 
@@ -1665,8 +1665,8 @@ PostCountAggregateInput = TypedDict(
     {
         'id': bool,
         'created_at': bool,
-        'updated_at': bool,
         'author': bool,
+        'avatar': bool,
         'title': bool,
         'content': bool,
         '_all': bool,
@@ -1679,8 +1679,8 @@ PostCountAggregateOutput = TypedDict(
     {
         'id': int,
         'created_at': int,
-        'updated_at': int,
         'author': int,
+        'avatar': int,
         'title': int,
         'content': int,
         '_all': int,
@@ -1692,16 +1692,16 @@ PostCountAggregateOutput = TypedDict(
 PostKeys = Literal[
     'id',
     'created_at',
-    'updated_at',
     'author',
+    'avatar',
     'title',
     'content',
 ]
 PostScalarFieldKeys = Literal[
     'id',
     'created_at',
-    'updated_at',
     'author',
+    'avatar',
     'title',
     'content',
 ]

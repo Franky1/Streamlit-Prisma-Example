@@ -13,8 +13,8 @@ generator client {
 model Post {
   id         String   @id @default(cuid())
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  author     String?
+  author     String
+  avatar     String?
   title      String
   content    String?
 }

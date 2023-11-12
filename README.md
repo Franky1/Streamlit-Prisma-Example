@@ -29,8 +29,8 @@ generator client {
 model Post {
   id         String   @id @default(cuid())
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  author     String?
+  author     String
+  avatar     String?
   title      String
   content    String?
 }
@@ -54,15 +54,19 @@ prisma db push --skip-generate
 
 :construction: :construction: :construction: *WIP - Just started - Not ready for use yet* :construction: :construction: :construction:
 
-> Last changed: 2023-11-11
+> Last changed: 2023-11-12
 
 ## Issues :bug:
 
-> Describe known issues here.
+- Caching does not work for the posts list
 
 ## ToDo :ballot_box_with_check:
 
-> Describe open ToDo's here.
+- [ ] Add documentation
+- [ ] Finish example project
+- [ ] Add some CSS styling
+- [ ] Deploy to streamlit cloud
+- [ ] Clean up repository
 
 ## Ideas :bulb:
 

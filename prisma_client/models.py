@@ -61,8 +61,8 @@ class Post(bases.BasePost):
 
     id: _str
     created_at: datetime.datetime
-    updated_at: datetime.datetime
-    author: Optional[_str] = None
+    author: _str
+    avatar: Optional[_str] = None
     title: _str
     content: Optional[_str] = None
 
@@ -185,16 +185,16 @@ _Post_fields: Dict['types.PostKeys', PartialModelField] = OrderedDict(
             'is_relational': False,
             'documentation': None,
         }),
-        ('updated_at', {
-            'name': 'updated_at',
+        ('author', {
+            'name': 'author',
             'is_list': False,
             'optional': False,
-            'type': 'datetime.datetime',
+            'type': '_str',
             'is_relational': False,
             'documentation': None,
         }),
-        ('author', {
-            'name': 'author',
+        ('avatar', {
+            'name': 'avatar',
             'is_list': False,
             'optional': True,
             'type': '_str',
