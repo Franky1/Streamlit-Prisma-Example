@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 # we need some build tools for installing additional python pip packages
 RUN apt-get update \
-    && apt-get install --yes \
+    && apt-get install --yes --no-install-recommends \
     software-properties-common \
     build-essential \
     gcc \
