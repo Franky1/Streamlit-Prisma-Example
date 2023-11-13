@@ -1,11 +1,15 @@
+'''
+TODO: Refactor this file to use sqlalchemy2 instead of prisma.
+'''
 import random
 import time
 
 from faker import Faker
+from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy import create_engine
 
-from prisma_client import Base64, Prisma
-from prisma_client.models import Post
 from utils import avatar
+from utils import models
 
 
 Faker.seed(random.randint(1, 1_000_000))
@@ -13,8 +17,9 @@ fake = Faker(locale="en_US")
 
 
 def get_database():
-    db = Prisma()
-    return db
+    db = create_engine("sqlite:///posts.sqlite", echo=True)
+    session = sessionmaker(bind=db)
+    return session
 
 
 def connect(db):
