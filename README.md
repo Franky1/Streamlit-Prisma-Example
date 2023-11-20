@@ -1,13 +1,24 @@
 <!-- markdownlint-disable MD026 -->
 # Streamlit Prisma Database ORM Example Project :gem:
 
-[![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://streamlit.io/)
+## :construction: :construction: :construction: *Project abandoned* :construction: :construction: :construction:
 
-## :construction: :construction: :construction: *WIP - Just started - Not ready for use yet* :construction: :construction: :construction:
+Due to numerous problems with the Prisma Python client, the project was put on hold for the time being. The Python client was not stable and does not yet appear to be fully developed. In particular, the setup of the Prisma Python client in an environment such as Streamlit Cloud did not work. The binaries cannot be installed via apt. There are too many things running in the background that you can't control. There are dependencies on Node and Rust.
 
-## Description :pencil2:
+## Issues :bug:
 
-> Describe your streamlit project here.
+- Prisma Client Python did not work stable
+- Prisma Setup/Init on Streamlit Cloud did not work
+- Dependencies on Node and Rust
+- Caching does not work for the posts list
+
+## Status
+
+:construction: :construction: :construction: *Project abandoned* :construction: :construction: :construction:
+
+> Last changed: 2023-11-20
+
+---
 
 ## Prisma Setup :gem:
 
@@ -47,30 +58,6 @@ prisma generate
 ```bash
 prisma db push --skip-generate
 ```
-
----
-
-## Status :heavy_check_mark:
-
-:construction: :construction: :construction: *WIP - Just started - Not ready for use yet* :construction: :construction: :construction:
-
-> Last changed: 2023-11-12
-
-## Issues :bug:
-
-- Caching does not work for the posts list
-
-## ToDo :ballot_box_with_check:
-
-- [ ] Add documentation
-- [ ] Finish example project
-- [ ] Add some CSS styling
-- [ ] Deploy to streamlit cloud
-- [ ] Clean up repository
-
-## Ideas :bulb:
-
-- Make a full example with an external database
 
 ## Resources :books:
 
