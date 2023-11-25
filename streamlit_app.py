@@ -13,7 +13,7 @@ with open('assets/styles/style.css') as css:
     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
 
 
-@st.cache_resource(ttl=3600, show_spinner=False)
+# @st.cache_resource(ttl=3600, show_spinner=False)
 def get_database_session():
     return database.init_connection()
 
@@ -84,7 +84,7 @@ def build_streamlit_post(post: database.Post) -> None:
 
 if __name__ == "__main__":
     if 'dbsession' not in st.session_state:
-        st.session_state.dbsession = database.get_database_session()
+        st.session_state.dbsession = get_database_session()
 
     build_streamlit_header()
     build_sidebar()
@@ -132,9 +132,9 @@ if __name__ == "__main__":
         get_content_from_post.clear()  # clear streamlit cache for this function
 
     if success:
-        placeholder_success.success(body="Database action was successful!")
+        placeholder_success.success(body="Database action was successful!", icon='👍')
     else:
-        placeholder_success.error(body="Database action was NOT successful! Rollback was performed!")
+        placeholder_success.error(body="Database action was NOT successful!", icon='🛑')
 
     posts = database.get_all_posts_sorted_desc(st.session_state.dbsession)
     count = database.get_post_count(st.session_state.dbsession)

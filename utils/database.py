@@ -12,7 +12,9 @@ else:
 
 def generate_prisma_client():
     print("GENERATING PRISMA CLIENT")
-    subprocess.call(["prisma", "generate"])
+    subprocess.call(["prisma", "py", "generate"])
+    subprocess.call(["prisma", "py", "fetch"])
+    subprocess.call(["prisma", "db", "push"])
     print("GENERATED PRISMA CLIENT")
 
 try:
@@ -83,12 +85,12 @@ def delete_post(db: Prisma, id_: int=None) -> bool:
 
 
 def get_oldest_post(db: Prisma):
-    post = db.post.find_first(order={"created_at": "asc"})
+    post = db.post.find_first(order={"created": "asc"})
     return post
 
 
 def get_newest_post(db: Prisma):
-    post = db.post.find_first(order={"created_at": "desc"})
+    post = db.post.find_first(order={"created": "desc"})
     return post
 
 
