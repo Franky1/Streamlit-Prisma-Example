@@ -48,20 +48,6 @@ model Post {
 }
 ```
 
-### Prisma Client Generator
-
-```bash
-prisma generate
-```
-
-### Prisma Database Migration
-
-```bash
-prisma db push
-```
-
----
-
 ## Resources :books:
 
 - Prisma
@@ -71,8 +57,6 @@ prisma db push
 - Prisma Client Python
   - <https://prisma-client-py.readthedocs.io/en/stable/>
   - <https://github.com/RobertCraigie/prisma-client-py>
-
----
 
 ## Links :link:
 
