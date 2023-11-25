@@ -18,8 +18,6 @@ Due to numerous problems with the Prisma Python client, the project was put on h
 
 > Last changed: 2023-11-25
 
----
-
 ## Prisma Setup :gem:
 
 ### Prisma Schema
