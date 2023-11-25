@@ -3,7 +3,7 @@
 
 [![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://app-prisma-example-fogbht3q5abmltqhnw2cbh.streamlit.app/)
 
-## :construction: :construction: :construction: *WIP* :construction: :construction: :construction:
+## :construction: *WIP* :construction:
 
 Streamlit example app with Prisma Database ORM.
 
@@ -11,7 +11,6 @@ Streamlit example app with Prisma Database ORM.
 
 This Streamlit app is only a simple example of how to use Prisma Database ORM with Streamlit.
 It uses a local SQLite database to store the data.
-
 This app is a simple post generator with fake data.
 Random posts are generated with the `Faker` library and the `py-avataaars` library is used to generate avatars.
 You can add random posts, delete posts and delete all posts.
