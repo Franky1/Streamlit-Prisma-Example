@@ -37,7 +37,7 @@ def build_sidebar() -> None:
                         Streamlit example app with Prisma Database ORM.
                         """)
     st.sidebar.header(body='GitHub :cd:', divider='blue')
-    st.sidebar.markdown("""- [Streamlit-SQLAlchemy](https://github.com/Franky1/Streamlit-SQLAlchemy)""")
+    st.sidebar.markdown("""- [Streamlit-Prisma-Example](https://github.com/Franky1/Streamlit-Prisma-Example)""")
     st.sidebar.header(body='Libraries :books:', divider='blue')
     st.sidebar.markdown("""
                         Used Python Libraries in this app:

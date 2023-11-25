@@ -1,22 +1,35 @@
 <!-- markdownlint-disable MD026 -->
 # Streamlit Prisma Database ORM Example Project :gem:
 
-## :construction: :construction: :construction: *Project halted* :construction: :construction: :construction:
+[![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://app-prisma-example-fogbht3q5abmltqhnw2cbh.streamlit.app/)
 
-Due to numerous problems with the Prisma Python client, the project was put on hold for the time being. The Python client was not stable and does not yet appear to be fully developed. In particular, the setup of the Prisma Python client in an environment such as Streamlit Cloud did not work. The binaries cannot be installed via apt. There are too many things running in the background that you can't control. There are dependencies on Node and Rust.
+## :construction: :construction: :construction: *WIP* :construction: :construction: :construction:
+
+Streamlit example app with Prisma Database ORM.
+
+## Description :pencil2:
+
+This Streamlit app is only a simple example of how to use Prisma Database ORM with Streamlit.
+It uses a local SQLite database to store the data.
+
+This app is a simple post generator with fake data.
+Random posts are generated with the `Faker` library and the `py-avataaars` library is used to generate avatars.
+You can add random posts, delete posts and delete all posts.
+
+## ToDo :ballot_box_with_check:
+
+- [ ] Add more CSS styling for the Streamlit app
+- [ ] Test Streamlit app on Streamlit Cloud from different clients
 
 ## Issues :bug:
 
-- Prisma Client Python did not work stable
-- Prisma Setup/Init on Streamlit Cloud did not work
-- Dependencies on Node and Rust
-- Caching does not work for the posts list
+- Prisma Setup/Init on Streamlit Cloud is a bit tricky
 
 ## Status
 
-:construction: :construction: :construction: *Project halted* :construction: :construction: :construction:
+:construction: *WIP* :construction:
 
-> Last changed: 2023-11-25
+> Last changed: 2023-11-26
 
 ## Prisma Setup :gem:
 
