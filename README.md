@@ -33,6 +33,7 @@ generator client {
   interface            = "sync"
   recursive_type_depth = 5
   output               = "./generated/prisma"
+  binaryTargets        = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
 }
 
 model Post {
