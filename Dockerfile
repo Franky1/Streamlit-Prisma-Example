@@ -41,8 +41,9 @@ COPY . .
 CMD ["streamlit", "run", "streamlit_app.py"]
 
 # Some docker commands see below:
-# docker build --progress=plain --tag streamlit:latest .
-# docker run -ti -p 8501:8501 --rm streamlit:latest /bin/bash
-# docker run -ti -p 8501:8501 --rm streamlit:latest
-# docker run -ti -p 8501:8501 -v ${pwd}:/app --rm streamlit:latest
-# docker run -ti -p 8501:8501 -v ${pwd}:/app --rm streamlit:latest /bin/bash
+# docker build --progress=plain --tag streamlit-prisma-example:latest .
+# docker run -ti --rm -v ${pwd}:/app streamlit-prisma-example:latest /bin/bash
+# docker run -ti --rm -p 8501:8501 streamlit-prisma-example:latest /bin/bash
+# docker run -ti --rm -p 8501:8501 streamlit-prisma-example:latest
+# docker run -ti --rm -p 8501:8501 -v ${pwd}:/app streamlit-prisma-example:latest
+# docker run -ti --rm -p 8501:8501 -v ${pwd}:/app streamlit-prisma-example:latest /bin/bash

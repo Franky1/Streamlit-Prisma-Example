@@ -1,77 +1,98 @@
 import random
-import time
+import shutil
+import subprocess
+import sys
 
 from faker import Faker
 
-from prisma_client import Base64, Prisma
-from prisma_client.models import Post
-from utils import avatar
+if sys.platform.startswith('win'):
+    from utils import avatar1 as avatar
+else:
+    from utils import avatar2 as avatar
+
+def generate_prisma_client():
+    print("GENERATING PRISMA CLIENT")
+    subprocess.call(["prisma", "generate"])
+    print("GENERATED PRISMA CLIENT")
+
+try:
+    from generated.prisma import Prisma
+except Exception as e:
+    print("GOT PRISMA ERROR")
+    print(e)
+    shutil.rmtree('/generated', ignore_errors=True)
+    generate_prisma_client()
+    from generated.prisma import Prisma
+finally:
+    from generated.prisma import Base64
+    from generated.prisma.models import Post
 
 
 Faker.seed(random.randint(1, 1_000_000))
 fake = Faker(locale="en_US")
 
 
-def get_database():
+def init_connection() -> Prisma:
     db = Prisma()
+    db.connect()
     return db
 
 
-def connect(db):
-    if not db.is_connected():
-        db.connect()
-
-
-def disconnect(db):
-    if db.is_connected():
-        db.disconnect()
-
-
-def clear_table(db):
+def clear_table(db: Prisma) -> bool:
     db.post.delete_many()
+    return True
 
 
-def get_all_posts(db):
+def get_all_posts(db: Prisma):
     posts = db.post.find_many()
     return posts
 
 
-def get_all_posts_sorted(db, by="created_at", order="desc"):
-    posts = db.post.find_many(order={by: order})
+def get_all_posts_sorted_desc(db: Prisma, by: str="created"):
+    posts = db.post.find_many(order={by: "desc"})
     return posts
 
 
-def get_single_post(db, post_id):
-    post = db.post.find_first(where={"id": post_id})
+def get_all_posts_sorted_asc(db: Prisma, by: str="created"):
+    posts = db.post.find_many(order={by: "asc"})
+    return posts
+
+
+def get_single_post(db: Prisma, id_: int):
+    post = db.post.find_first(where={"id": id_})
     return post
 
 
-def generate_fake_post(db):
+def generate_fake_post(db: Prisma) -> bool:
     author = f"{fake.first_name()} {fake.last_name()}"
     db.post.create({
         "title": fake.sentence(nb_words=7).strip("."),
-        "content": fake.paragraph(nb_sentences=40),
+        "content": fake.paragraph(nb_sentences=30),
         "author": author,
-        "avatar": Base64.encode(avatar.generate_circular_thumbnail_bytes(string=author)),
+        "avatar": Base64.encode(avatar.generate_thumbnail_bytes(string=author, size=128)),
     })
+    return True
 
 
-def delete_post(db, post_id):
-    if post_id:
-        db.post.delete(where={"id": post_id})
+def delete_post(db: Prisma, id_: int=None) -> bool:
+    success = False
+    if id_:
+        db.post.delete(where={"id": id_})
+        success = True
+    return success
 
 
-def get_oldest_post(db):
+def get_oldest_post(db: Prisma):
     post = db.post.find_first(order={"created_at": "asc"})
     return post
 
 
-def get_newest_post(db):
+def get_newest_post(db: Prisma):
     post = db.post.find_first(order={"created_at": "desc"})
     return post
 
 
-def get_random_post(db):
+def get_random_post(db: Prisma):
     post = db.query_first(
         '''
         SELECT *
@@ -84,19 +105,17 @@ def get_random_post(db):
     return post
 
 
-def get_post_count(db):
+def get_post_count(db: Prisma):
     count = db.post.count()
     return count
 
 
 def main():
-    db = get_database()
-    db.connect()
+    db = init_connection()
     clear_table(db)
-    for _ in range(10):
+    for _ in range(30):
         generate_fake_post(db)
-        time.sleep(0.1)
-    db.disconnect()
+    print(get_post_count(db))
 
 
 if __name__ == "__main__":

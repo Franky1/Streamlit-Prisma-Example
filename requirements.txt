@@ -1,14 +1,9 @@
-# add the required pypi packages here that your app actually needs
-numpy
-pandas
-pillow
 streamlit
-pydantic>2
-sqlalchemy>2
-alchemical
-# this is a prerelease version of sqlacodegen that supports sqlalchemy 2.0
-sqlacodegen==3.0.0rc3
+# the pyavagen package fails with pillow versions 10 and above
+pillow==9.5.0
 prisma
 faker
+# pyavagen is used on windows only
 pyavagen
+# py-avataaars is used on linux/mac
 py-avataaars

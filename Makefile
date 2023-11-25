@@ -1,10 +1,10 @@
-.PHONY: all update venv venvupdate docker cleanpy cleanvenv cleanall
+.PHONY: all update venv venvupdate docker schema cleanpy cleanvenv cleanall
 
 # run one shell only
-.ONESHELL: all update venv venvupdate docker cleanpy cleanvenv cleanall
+.ONESHELL: all update venv venvupdate docker schema cleanpy cleanvenv cleanall
 
 # disable running of targets in parallel
-.NOTPARALLEL: all update venv venvupdate docker cleanpy cleanvenv cleanall
+.NOTPARALLEL: all update venv venvupdate docker schema cleanpy cleanvenv cleanall
 
 # predefined variables
 CURRDIRECTORY := "$(notdir $(CURDIR))"
@@ -25,7 +25,6 @@ endif
 
 # default target
 all: cleanpy update venv
-	@echo "+++++++++++++++++++ all START +++++++++++++++++++"
 	@echo
 	@echo "******************* all FINISHED *******************"
 
@@ -98,11 +97,7 @@ schema:
 	@echo
 	@echo "Generate database schema with Prisma..."
 	@echo
-	$(PYTHONVENV)prisma db push --skip-generate --schema sqlalchemy.prisma
-	@echo
-	@echo "Generate SQLAlchemy models..."
-	@echo
-	$(PYTHONVENV)sqlacodegen --outfile ./utils/models.py sqlite:///sqlalchemy.sqlite
+	$(PYTHONVENV)prisma db push
 	@echo
 	@echo "******************* docker FINISHED *******************"
 
@@ -111,6 +106,7 @@ cleanpy:
 	@echo "+++++++++++++++++++ cleanpy START +++++++++++++++++++"
 	@echo
 	rm -rf __pycache__
+	rm -rf utils/__pycache__
 	@echo
 	@echo "******************* cleanpy FINISHED *******************"
 
@@ -124,6 +120,5 @@ cleanvenv:
 
 # clean all
 cleanall: cleanpy cleanvenv
-	@echo "+++++++++++++++++++ cleanall START +++++++++++++++++++"
 	@echo
 	@echo "******************* cleanall FINISHED *******************"
