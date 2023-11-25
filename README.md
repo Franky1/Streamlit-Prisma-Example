@@ -32,13 +32,13 @@ generator client {
   provider             = "prisma-client-py"
   interface            = "sync"
   recursive_type_depth = 5
-  output               = "./prisma_client"
+  output               = "./generated/prisma"
 }
 
 model Post {
-  id      BigInt      @id @default(autoincrement())
-  uuid    String      @unique @default(uuid())
-  created DateTime    @default(now())
+  id      Int      @id @default(autoincrement())
+  uuid    String   @unique @default(uuid())
+  created DateTime @default(now())
   author  String
   title   String
   content String?
