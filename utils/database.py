@@ -10,20 +10,17 @@ if sys.platform.startswith('win'):
 else:
     from utils import avatar2 as avatar
 
-def generate_prisma_client():
-    print("GENERATING PRISMA CLIENT")
-    subprocess.call(["prisma", "py", "generate"])
-    subprocess.call(["prisma", "py", "fetch"])
-    subprocess.call(["prisma", "db", "push"])
-    print("GENERATED PRISMA CLIENT")
-
 try:
     from generated.prisma import Prisma
 except Exception as e:
-    print("GOT PRISMA ERROR")
+    print("GOT PRISMA ERROR...")
     print(e)
+    print("GENERATING PRISMA CLIENT...")
     shutil.rmtree('/generated', ignore_errors=True)
-    generate_prisma_client()
+    subprocess.call(["prisma", "py", "generate"])
+    subprocess.call(["prisma", "py", "fetch"])
+    subprocess.call(["prisma", "db", "push"])
+    print("GENERATED PRISMA CLIENT...")
     from generated.prisma import Prisma
 finally:
     from generated.prisma import Base64
