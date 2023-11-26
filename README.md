@@ -20,9 +20,14 @@ You can add random posts, delete posts and delete all posts.
 - [ ] Add more CSS styling for the Streamlit app
 - [ ] Test Streamlit app on Streamlit Cloud from different clients
 
+## Ideas :bulb:
+
+- Make example with an external database instead of local SQLite
+
 ## Issues :bug:
 
 - Prisma Setup/Init on Streamlit Cloud is a bit tricky
+- This app only uses a local SQLite database, there is no external database connection, therefore data is not persistent.
 
 ## Status
 

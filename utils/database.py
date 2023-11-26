@@ -1,5 +1,4 @@
 import random
-import shutil
 import subprocess
 import sys
 
@@ -16,7 +15,8 @@ except Exception as e:
     print("GOT PRISMA ERROR...")
     print(e)
     print("GENERATING PRISMA CLIENT...")
-    shutil.rmtree('/generated', ignore_errors=True)
+    from prisma_cleanup import cleanup  # import custom cleanup function from prisma library
+    cleanup()  # cleanup all generated prisma files
     subprocess.call(["prisma", "py", "generate"])
     subprocess.call(["prisma", "py", "fetch"])
     subprocess.call(["prisma", "db", "push"])
@@ -37,9 +37,9 @@ def init_connection() -> Prisma:
     return db
 
 
-def clear_table(db: Prisma) -> bool:
+def clear_table(db: Prisma) -> str:
     db.post.delete_many()
-    return True
+    return "commit"
 
 
 def get_all_posts(db: Prisma):
@@ -62,7 +62,7 @@ def get_single_post(db: Prisma, id_: int):
     return post
 
 
-def generate_fake_post(db: Prisma) -> bool:
+def generate_fake_post(db: Prisma) -> str:
     author = f"{fake.first_name()} {fake.last_name()}"
     db.post.create({
         "title": fake.sentence(nb_words=7).strip("."),
@@ -70,14 +70,14 @@ def generate_fake_post(db: Prisma) -> bool:
         "author": author,
         "avatar": Base64.encode(avatar.generate_thumbnail_bytes(string=author, size=128)),
     })
-    return True
+    return "commit"
 
 
-def delete_post(db: Prisma, id_: int=None) -> bool:
-    success = False
+def delete_post(db: Prisma, id_: int=None) -> str:
+    success = "rollback"
     if id_:
         db.post.delete(where={"id": id_})
-        success = True
+        success = "commit"
     return success
 
 
